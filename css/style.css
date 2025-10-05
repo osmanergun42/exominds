@@ -301,30 +301,35 @@ h3 { font-size: 1.7em; }
 }
 
 /* ==========================================================
-   MOBİL CİHAZ UYUMLULUK AYARLARI (İyileştirilmiş Versiyon)
+   MOBİL CİHAZ UYUMLULUK AYARLARI (Nihai Mobil Düzen)
    ========================================================== */
 
 /* 1. Tablet ve Küçük Masaüstü (992px altı) */
 @media (max-width: 992px) {
-    /* Genel Konteyner: Kenarlardan biraz boşluk bırak (15px) */
+    /* Genel Konteyner: Kenarlardan boşluk */
     .container {
         padding: 0 15px;
     }
 
+    /* Navbar Linkleri: Daha az yer kaplasın */
+    .nav-links li {
+        margin-left: 18px; /* Boşluğu azalttık */
+    }
+    .nav-links a {
+        font-size: 0.9em; /* Link fontunu küçülttük */
+    }
+
     /* Ana Başlıklar: Mobil cihazda çok büyük kalmasını engelle */
+    /* Ana Sayfa'daki büyük başlıklar için (örneğin h1) */
     h1 {
-        font-size: 2.2em; 
+        font-size: 2.5em; 
+        line-height: 1.2;
     }
     h2 {
-        font-size: 1.7em;
+        font-size: 1.8em;
     }
-
-    /* Bölüm Boşlukları: Dikeyde fazla yer kaplamaması için azalt */
-    section {
-        padding: 35px 0;
-    }
-
-    /* Iframe Yüksekliği: Mevcut ayarınızı koruyalım */
+    
+    /* Iframe Yüksekliği: Mevcut ayarınız kalsın */
     .exoplanet-iframe-container {
         height: 500px; 
     }
@@ -332,21 +337,27 @@ h3 { font-size: 1.7em; }
 
 /* 2. Telefon Cihazları (600px altı) */
 @media (max-width: 600px) {
-    /* --- NAVİGASYON DÜZENLEMESİ --- */
-
-    /* Navbar'ı sabitleyin ve daha kompakt hale getirin */
-    .navbar {
-        padding: 8px 10px;
+    
+    /* Sayfa Başlığı (Logo): Küçült ve sola al */
+    .logo a {
+        font-size: 1.5em !important; /* Logoyu küçült (Önceki stille çakışmaması için !important eklendi) */
     }
 
-    /* NAV LİNKLERİNİ GİZLEME (Hamburger Menü için yer açmak) */
-    /* Menü linklerini tamamen gizliyoruz, böylece sadece logo kalır */
+    /* --- NAVİGASYON DÜZENLEMESİ: LİNKLERİ GİZLEME/YENİDEN DÜZENLEME --- */
+
+    .navbar {
+        padding: 8px 10px; /* Navbar'ın dikey boşluğunu küçülttük */
+    }
+    
+    /* Menü linklerini tamamen gizliyoruz (En temiz çözüm: Hamburger menü yoksa) */
     .nav-links {
         display: none; 
     }
     
-    /* Eğer JavaScript ile hamburger menü yapmıyorsanız ve linkleri göstermek istiyorsanız: */
-    /* .nav-links {
+    /* VEYA: Linkleri alt alta sıralayarak sığdırıyoruz (Daha iyi bir mobil deneyim sağlar) */
+    /* Eğer linklerin görünmesini isterseniz, yukarıdaki "display: none;" satırını silin ve aşağıdaki kodu kullanın: */
+    /*
+    .nav-links {
         display: flex;
         flex-direction: column;
         position: absolute;
@@ -359,41 +370,35 @@ h3 { font-size: 1.7em; }
     .nav-links li {
         text-align: center;
         margin: 5px 0;
-    } */
-
+    }
+    */
 
     /* --- İÇERİK DÜZENLEMESİ --- */
 
-    /* Ana Başlıklar: Daha da küçült */
+    /* Ana Başlık (Örneğin: "Keşfedilmemişe Dokunuş") */
     h1 {
-        font-size: 1.8em; 
+        font-size: 1.8em; /* Daha da küçült (Taşmayı önler) */
+        line-height: 1.3;
     }
+    /* Diğer Başlıklar */
     h2 {
         font-size: 1.4em;
     }
+    
+    /* Paragraf ve Giriş Metni (Ana Sayfa açıklaması) */
     p, .lead {
-        font-size: 0.9em; /* Paragraf metnini de küçült */
+        font-size: 0.85em; 
     }
     
-    /* İletişim Sayfası İstatistik Kartları (Grid Yapıları) */
-    /* Kontakt sayfasındaki kartları tek sütuna indir */
-    .stat-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    /* Kontakt Sayfası İletişim Öğeleri (Örn: Ad, Tel, Unvan) */
-    .contact-info {
-        /* Eğer yan yana duran öğeler varsa, bunları alt alta sırala */
-        flex-direction: column;
-    }
-    .contact-item {
-        margin-bottom: 15px;
-    }
-
     /* Iframe Yüksekliği: Dar ekranda daha kısa tutalım */
     .exoplanet-iframe-container {
-        height: 300px; /* 350px'ten 300px'e düşürüldü */
+        height: 300px; 
+    }
+    
+    /* İletişim Bilgileri (image_cce948.png'deki gibi alt alta sıralansın) */
+    .contact-info { /* Eğer bu bir flex veya grid container ise */
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 

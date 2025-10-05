@@ -300,15 +300,74 @@ h3 { font-size: 1.7em; }
     border: none;
 }
 
-/* Mobil cihazlar için yükseklik ayarlaması */
+/* ==========================================================
+   MOBİL CİHAZ UYUMLULUK AYARLARI
+   ========================================================== */
+
+/* 1. Tablet ve Küçük Masaüstü (992px altı) */
 @media (max-width: 992px) {
+    /* Genel Konteyner: Kenarlardan biraz boşluk bırak */
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Ana Başlıklar: Mobil cihazda çok büyük kalmasını engelle */
+    h1 {
+        font-size: 2.5em; 
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+
+    /* Bölüm Boşlukları: Dikeyde fazla yer kaplamaması için azalt */
+    section {
+        padding: 40px 0;
+    }
+    
+    /* Iframe Yüksekliği: Mevcut ayarınız kalsın */
     .exoplanet-iframe-container {
         height: 500px; 
     }
+
+    /* Eğer Contact Form (İletişim) varsa genişliğini ayarla */
+    .contact-form {
+        max-width: 90%; 
+    }
 }
+
+/* 2. Telefon Cihazları (600px altı) */
 @media (max-width: 600px) {
+    /* Navbar Düzeni: Mobil menüye geçiş yapın (Daha önce navbar stili vermediyseniz eklenmeli) */
+    .nav-links {
+        /* Eğer menü dikey listeye dönmüyorsa, bu kodu kullanın: */
+        flex-direction: column;
+        align-items: flex-start;
+        /* Veya menüyü tamamen gizleyip hamburger menü açın */
+    }
+    .nav-links li {
+        margin: 5px 0;
+    }
+    
+    /* Ana Başlıklar: Daha da küçült */
+    h1 {
+        font-size: 2em; 
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    p {
+        font-size: 0.9em; /* Paragraf metnini de küçült */
+    }
+
+    /* Iframe Yüksekliği: Mevcut ayarınız kalsın */
     .exoplanet-iframe-container {
         height: 350px; 
+    }
+
+    /* Grid Yapıları: 1 sütuna düşür (Örn: İletişim sayfasındaki istatistikler) */
+    .stat-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
 

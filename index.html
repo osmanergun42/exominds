@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExoMinds | Ötegezegen Keşif Merkezi</title>
+    <meta name="description" content="Keşfedilmiş ötegezegenlerin dinamik verilerini, bilimsel bilgilerini ve görsellerini keşfedin. Evrenin sınırlarını ExoMinds ile zorlayın.">
+    
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    </head>
+<body class="dark-mode" role="document">
+
+    <header id="main-header" role="banner">
+        <div class="container header-content">
+            <h1 id="logo"><a href="/" aria-label="ExoMinds Ana Sayfası">ExoMinds</a></h1>
+            <nav id="main-nav" role="navigation" aria-label="Ana Navigasyon">
+                <ul>
+                    <li><a href="#hero-section" class="active" aria-current="page">Ana Sayfa</a></li>
+                    <li><a href="#eyes-on-section">3D Keşif</a></li> <li><a href="tablo\tablo.html">Veri Analizi</a></li> <li><a href="otegezegen.html">ÖTEGEZEGEN NEDİR?</a></li>
+                    <li><a href="#contact-section">İletişim</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle-button" aria-label="Temayı değiştir (Açık/Koyu)">
+                🌙
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        
+        <section id="hero-section" class="section-full-height parallax-container" aria-labelledby="hero-title">
+            <div class="parallax-background"></div>
+
+            <div class="container hero-content content-reveal">
+                <h2 id="hero-title" class="hero-title">
+                    Keşfedilmemişe Dokunuş: Evrenin En Yeni Komşularını Tanıyın.
+                </h2>
+                <p class="hero-subtitle">
+                    Firestore destekli, sürekli güncel ötegezegen veri tabanına dalın. <br> Bilimi ve keşfi bir araya getiren ExoMinds'a hoş geldiniz.
+                </p>
+                
+                </div>
+        </section>
+        
+        <div class="section-divider bg-darker-top"></div>
+
+        <section id="eyes-on-section" class="section-padding bg-darker" aria-labelledby="eyes-title">
+            <div class="container">
+                <div class="eyes-card content-reveal" role="region">
+                    <h2 id="eyes-title" class="section-title eyes-title">NASA Eyes ile 3D Gezegen Keşfi</h2>
+                    <p class="eyes-subtitle">
+                        NASA'nın "Eyes on Exoplanets" interaktif uygulamasını doğrudan sayfanızda deneyimleyin. Uygulamanın yüklenmesi birkaç saniye sürebilir.
+                    </p>
+                    
+                    <div class="exoplanet-iframe-container">
+                        <iframe 
+                            src="https://eyes.nasa.gov/apps/exo/" 
+                            title="NASA Eyes on Exoplanets 3D Application" 
+                            allowfullscreen 
+                            frameborder="0"
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                    <h3 class="eyes-title" style="margin-top: 50px;">Veya Detaylı Veri Analizine Geçin</h3>
+                    <a href="tablo/tablo.html" class="cta-button eyes-button">
+                        🔍 Tüm Veritabanını Keşfet
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <div class="section-divider bg-lighter-top"></div>
+
+        <section id="featured-discoveries" class="section-padding" aria-labelledby="featured-title">
+            </section>
+        </main>
+
+    <footer id="main-footer" role="contentinfo">
+        </footer>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script type="module" defer src="js/main.js"></script>
+</body>
+</html>

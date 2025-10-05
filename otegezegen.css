@@ -1,0 +1,218 @@
+/* otegezegen.css - Gezegen Tipi Sınıflandırma Kartları */
+
+/* ==========================================================
+1. GENEL GRID YAPISI
+========================================================== */
+.type-grid{
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 30px;
+max-width: 1200px;
+margin: 0 auto;
+}
+@media (max-width: 900px){
+.type-grid{
+grid-template-columns: 1fr;
+}
+}
+
+/* ==========================================================
+2. KART STİLİ (Görselden Uyarlanmıştır)
+========================================================== */
+.type-card{
+position: relative;
+overflow: hidden;
+height: 400px; 
+border-radius: 10px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+cursor: pointer;
+/* Tilt efekti için gerekli */
+perspective: 1000px;
+transform-style: preserve-3d;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.type-card:hover{
+transform: translateY(-5px);
+box-shadow: 0 15px 40px rgba(0, 122, 204, 0.5);
+}
+
+/* ==========================================================
+3. GÖRSEL, KAPLAMA VE İÇERİK STİLLERİ
+========================================================== */
+.type-card-bg {
+/* Görselin boyutunu ve konumunu ayarlama */
+width: 100%;
+height: 100%;
+object-fit: cover; /* Varsayılan: Kartı tamamen kapla */
+transition: transform 0.1s linear; /* Tilt için hızlı transition */
+
+/* Görseli küçültmek ve merkezlemek için */
+object-fit: contain; /* Görselin tamamını göster, kartın içinde kalsın */
+max-width: 85%;
+max-height: 85%;
+margin: auto;
+display: block;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%); /* Tam merkezleme */
+z-index: 1; /* Tilt efekti için */
+}
+.type-card:hover .type-card-bg{
+transform: translate(-50%, -50%) scale(1.03); /* Hover'da hafif büyütme */
+}
+
+/* Kart Üzeri Kaplama (Overlay) ve İçerik */
+.card-overlay-content{
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 100%;
+/* İçeriğin arkasındaki hafif karanlık geçiş (okunurluk için) */
+background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%);
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: center; /* Yatayda ortala */
+padding: 40px 20px;
+text-align: center;
+color: var(--color-text-light);
+z-index: 5; /* Tilt efekti için */
+transition: transform 0.1s linear; /* Tilt için hızlı transition */
+}
+
+.type-card-title{
+font-size: 2.5em;
+font-weight: 900;
+line-height: 1.2;
+text-transform: uppercase;
+margin-bottom: 10px;
+border-bottom: 3px solid var(--color-accent-blue);
+padding-bottom: 8px;
+}
+
+.type-card-number{
+font-size: 1.1em;
+font-weight: 300;
+color: var(--color-text-muted);
+margin-bottom: 5px;
+}
+
+/* Keşfet Butonu Stilleri */
+.type-card-explore {
+font-size: 1.2em;
+font-weight: 700;
+color: var(--color-accent-purple); 
+background: none;
+border: 2px solid var(--color-accent-purple);
+padding: 8px 25px;
+margin-top: 15px;
+cursor: pointer;
+letter-spacing: 1px;
+border-radius: 5px;
+transition: all 0.3s ease; 
+}
+.type-card-explore:hover {
+background-color: var(--color-accent-purple); 
+color: var(--color-background-dark);
+box-shadow: 0 0 15px var(--color-accent-purple);
+}
+
+/* Ekstra A etiketi kaplaması (JS'den modal açılışı için gerekliydi, artık tüm kart tıklamayı kullanıyoruz) */
+.type-card a{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 5;
+}
+
+/* ==========================================================
+4. MODAL PENCERE STİLLERİ
+========================================================== */
+/* otegezegen.css - .modal sınıfını GÜNCELLEYİN */
+
+.modal{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.9);
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+overflow-y: auto; 
+/* Kaydırmada üst/alt boşluk - BU SATIR GÜNCELLENDİ */
+padding-top: 100px; /* Üst navigasyonun altından başlaması için boşluğu artırdık */
+padding-bottom: 50px;
+}
+.modal-content{
+background-color: var(--color-background-darker);
+color: var(--color-text-light);
+box-shadow: 0 10px 40px rgba(0, 122, 204, 0.7);
+position: relative;
+transform: scale(0.9);
+transition: all 0.3s ease-out;
+
+/* Boyut Ayarları - İçerik ne kadar uzunsa kart o kadar genişler */
+padding: 50px;
+width: 95%;
+max-width: 950px;
+border-radius: 15px; 
+}
+.modal[aria-hidden="false"] .modal-content{
+transform: scale(1);
+}
+.close-button{
+position: absolute;
+top: 15px;
+right: 25px;
+color: var(--color-accent-purple);
+font-size: 30px;
+font-weight: bold;
+border: none;
+background: none;
+cursor: pointer;
+transition: color 0.3s;
+}
+.close-button:hover{
+color: var(--color-accent-blue);
+}
+.modal-title{
+font-size: 2.2em;
+color: var(--color-accent-blue);
+border-bottom: 2px solid var(--color-text-muted);
+padding-bottom: 15px; 
+margin-bottom: 40px; /* Açıklama metni ile başlık arasındaki boşluk */
+}
+
+/* Modal İçindeki Örnek Gezegen Stilleri */
+.planet-example{
+margin-top: 40px; /* Her bir örnek arasına daha fazla boşluk */
+padding-left: 20px;
+border-left: 3px solid var(--color-accent-purple);
+}
+.planet-example h4{
+color: var(--color-accent-purple);
+font-size: 1.5em; /* Başlığı hafifçe büyüttük */
+margin-bottom: 15px; 
+}
+.planet-example p a{
+color: var(--color-accent-blue);
+text-decoration: none;
+font-weight: 700;
+transition: color 0.3s;
+}
+.planet-example p a:hover{
+text-decoration: underline;
+}
+.planet-example .discovery-info{
+font-size: 0.9em;
+font-style: italic;
+color: var(--color-text-muted);
+margin-top: 5px;
+}

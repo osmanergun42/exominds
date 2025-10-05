@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExoMinds - Ötegezegen Keşif Veritabanı</title>
+    
+    <link rel="stylesheet" href="tablo.css"> 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1><i class="fas fa-satellite-dish"></i> ExoMinds</h1>
+            <p class="lead">Dünyanın dört bir yanından keşfedilen ötegezegenlerin dinamik veritabanı.</p>
+        </header>
+
+        <div class="filtre-alani">
+            <h2 style="color: #00bcd4;"><i class="fas fa-filter"></i> Veri Filtreleme</h2>
+            <form id="filtre-formu">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    
+                    <div>
+                        <label for="arama-kutusu">Gezegen / Yıldız Ara</label>
+                        <input type="text" id="arama-kutusu" placeholder="Örn: Kepler, TRAPPIST-1">
+                    </div>
+
+                    <div>
+                        <label for="kesif-yontemi">Keşif Yöntemi</label>
+                        <select id="kesif-yontemi" style="width: 100%;">
+                            <option value="">Tüm Yöntemler</option>
+                            <option value="Transit">Transit</option>
+                            <option value="Radial Velocity">Radial Velocity</option>
+                            <option value="Microlensing">Microlensing</option>
+                            <option value="Imaging">Imaging</option>
+                            <option value="Astrometry">Astrometry</option>
+                            <option value="TTV">TTV</option>
+                            <option value="Orbital Modulation">Orbital Modulation</option>
+                            <option value="Eclipse Timing Variations">Eclipse Timing Variations</option>
+                            <option value="Pulsation Timing Variations">Pulsation Timing Variations</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="gezegen-tipi">Gezegen Tipi (Yarıçapa Göre)</label>
+                        <select id="gezegen-tipi" style="width: 100%;" disabled>
+                            <option value="">Yükleniyor...</option>
+                            </select>
+                    </div>
+                    
+                    <div style="grid-column: span 3;">
+                        <label>Yarıçap (R⊕) Aralığı</label>
+                        <div class="yaricap-aralik">
+                            <input type="number" id="yaricap-min" placeholder="Min (0)">
+                            <input type="number" id="yaricap-max" placeholder="Max (Sonsuz)">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="kutle-min">Kütle (M⊕) Aralığı</label>
+                        <div class="yaricap-aralik">
+                            <input type="number" id="kutle-min" placeholder="Min (0)">
+                            <input type="number" id="kutle-max" placeholder="Max (Sonsuz)">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="periyot-min">Periyot (Gün) Aralığı</label>
+                        <div class="yaricap-aralik">
+                            <input type="number" id="periyot-min" placeholder="Min (0)">
+                            <input type="number" id="periyot-max" placeholder="Max (Sonsuz)">
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    </div>
+            </form>
+        </div>
+
+        <div class="tablo-alani">
+            <h2 style="color: #f7931e;"><i class="fas fa-globe-americas"></i> Ötegezegen Listesi</h2>
+
+            <p id="yukleniyor-mesaji" style="display: none;">Veriler Firebase'den yükleniyor...</p>
+
+            <p>Toplam Filtrelenmiş Gezegen: <span id="toplam-gezegen-sayisi">0</span></p>
+
+            <div style="text-align: right; margin-bottom: 15px;">
+                <button id="secili-indir-butonu" class="detay-button" disabled>
+                    <i class="fas fa-file-download"></i> Seçilileri Excel Olarak İndir
+                </button>
+            </div>
+            <div id="sayfalama-kontrolleri">
+                <button id="onceki-sayfa" disabled> &laquo; Önceki </button>
+                <span id="sayfa-bilgisi">Sayfa 1 / 1</span>
+                <button id="sonraki-sayfa" disabled> Sonraki &raquo; </button>
+            </div>
+            <div class="tablo-cerceve">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="tumunu-sec-kutusu"></th> 
+                            <th>Adı</th>
+                            <th>Yıldız Sistemi</th>
+                            <th>Yarıçap (R⊕)</th>
+                            <th>Kütle (M⊕)</th>
+                            <th>Keşif Yılı</th>
+                            <th>Detaylar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gezegen-tablo-govdesi">
+                        <tr><td colspan="7" style="text-align: center;">Filtrelemeye başlamak için verilerin yüklenmesini bekleyin.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="gezegen-detay-modal" class="modal">
+        <div class="modal-icerik">
+            <span class="kapat-butonu">&times;</span>
+            <h2 id="detay-adi" style="color: #f7931e; text-align: center; margin-bottom: 20px;"><i class="fas fa-satellite"></i> Gezegen Detayları</h2> 
+            
+            <div id="modal-gorsel-alani">
+                </div>
+
+            <h3 style="color: #00bcd4; border-bottom: 1px solid #333; padding-bottom: 5px;">Temel Bilgiler</h3>
+            <ul class="modal-detay-listesi" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <li><strong>Gezegen Adı:</strong> <span id="modal-adi"></span></li>
+                <li><strong>Yıldız Sistemi:</strong> <span id="modal-yildiz"></span></li>
+                <li><strong>Keşif Yöntemi:</strong> <span id="modal-yontem"></span></li>
+                <li><strong>Keşif Yılı:</strong> <span id="modal-yil"></span></li>
+                <li><strong>Keşif Tesisi:</strong> <span id="modal-tesis"></span></li>
+                <li><strong>Çözüm Tipi:</strong> <span id="modal-solution-type"></span></li>
+                <li><strong>Tartışmalı:</strong> <span id="modal-controversial"></span></li>
+                <li><strong>TTV Algılandı:</strong> <span id="modal-ttv"></span></li>
+                <li><strong>Default Set:</strong> <span id="modal-default-set"></span></li>
+                <li><strong>Gezegen Sayısı:</strong> <span id="modal-num-planets"></span></li>
+            </ul>
+
+            <h3 style="color: #00bcd4; border-bottom: 1px solid #333; padding-bottom: 5px; margin-top: 20px;">Fiziksel Özellikler</h3>
+            <ul class="modal-detay-listesi" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <li><strong>Yarıçap:</strong> <span id="modal-yaricap"></span></li>
+                <li><strong>Kütle:</strong> <span id="modal-kutle"></span></li>
+                <li><strong>Yoğunluk:</strong> <span id="modal-yogunluk"></span></li>
+                <li><strong>Yörünge Periyodu:</strong> <span id="modal-periyot"></span></li>
+                <li><strong>Denge Sıcaklığı:</strong> <span id="modal-sicaklik"></span></li>
+            </ul>
+
+            <h3 style="color: #00bcd4; border-bottom: 1px solid #333; padding-bottom: 5px; margin-top: 20px;">Yıldız & Konum Bilgileri</h3>
+            <ul class="modal-detay-listesi" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <li><strong>Uzaklık:</strong> <span id="modal-distance"></span></li>
+                <li><strong>Sağ Açıklık (RA):</strong> <span id="modal-ra"></span></li>
+                <li><strong>Yükselim (Dec):</strong> <span id="modal-dec"></span></li>
+                <li><strong>Spektral Tip:</strong> <span id="modal-spectral-type"></span></li>
+                <li><strong>Yıldız Sıcaklığı:</strong> <span id="modal-stellar-temp"></span></li>
+                <li><strong>Yıldız Yarıçapı:</strong> <span id="modal-stellar-radius"></span></li>
+                <li><strong>Yıldız Kütlesi:</strong> <span id="modal-stellar-mass"></span></li>
+                <li><strong>Yıldız Metallik:</strong> <span id="modal-stellar-metallicity"></span></li>
+                <li><strong>Yıldız Yerçekimi:</strong> <span id="modal-stellar-gravity"></span></li>
+                <li><strong>V Mag:</strong> <span id="modal-vmag"></span></li>
+                <li><strong>Ks Mag:</strong> <span id="modal-ksmag"></span></li>
+                <li><strong>Gaia Mag:</strong> <span id="modal-gaiamag"></span></li>
+            </ul>
+
+            <h3 style="color: #00bcd4; border-bottom: 1px solid #333; padding-bottom: 5px; margin-top: 20px;">Veri Kaynağı</h3>
+            <ul class="modal-detay-listesi" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <li><strong>Gezegen Ref:</strong> <span id="modal-planet-ref"></span></li>
+                <li><strong>Yıldız Ref:</strong> <span id="modal-stellar-ref"></span></li>
+                <li><strong>Sistem Ref:</strong> <span id="modal-system-ref"></span></li>
+                <li><strong>Son Güncelleme:</strong> <span id="modal-last-update"></span></li>
+                <li><strong>Yayın Tarihi:</strong> <span id="modal-release-date"></span></li>
+                <li><strong>Parametre Yay. Tar:</strong> <span id="modal-param-pub-date"></span></li>
+            </ul>
+            
+        </div>
+    </div>
+
+    <script type="module" src="tablo.js"></script>
+
+</body>
+</html>

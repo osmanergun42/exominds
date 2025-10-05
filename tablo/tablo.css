@@ -1,0 +1,419 @@
+/* Genel Ayarlar */
+body {
+    /* HTML'deki temel body ayarlarını alıyoruz */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Yedek Koyu arka plan */
+    color: #E0E0E0; /* Açık yazı rengi */
+    min-height: 100vh;
+    
+    /* ARKA PLAN GÖRSELİ STİLLERİ - KESİNLİKLE DOĞRU YOL */
+    /* CSS/style.css -> ../ (EXOMINDS) -> images/pexels-umkreisel-app-956981.jpg */
+    background-image: url('../images/pexels-umkreisel-app-956981.jpg'); 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat; 
+    position: relative; 
+    z-index: 1; 
+}
+
+/* Arka plan görseli üzerine koyu, yarı şeffaf katman (Okunurluğu artırır) */
+body::before {
+    content: '';
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: -1; 
+}
+
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: 300;
+}
+header h1 {
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+    font-size: 2.5em;
+}
+header .lead {
+    font-size: 1.1em;
+    color: #bb86fc;
+    margin-top: 5px;
+}
+
+/* Ana Düzen (Filtreler ve Tabloyu Alt Alta Koyma) */
+.container {
+    /* FLEX KALDIRILDI - ALT ALTA DÜZEN */
+    display: block; /* Veya kaldırılabilir */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    /* gap: 30px; // Flex kaldırıldığı için gerek yok */
+}
+
+/* --- Filtreler Alanı (Üst Bölüm) --- */
+.filtre-alani {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px; /* Tablo ile arasında boşluk bırakır */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* YAN YANA DÜZEN ÖZELLİKLERİ KALDIRILDI */
+    width: 100%; 
+    max-width: 100%;
+    height: auto; 
+    position: static; 
+    top: auto;
+}
+
+.filtre-alani h2 {
+    color: #00bcd4;
+}
+
+.filtre-alani label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/* Input ve Select Alanları */
+input[type="text"], input[type="number"] {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #eee;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Yarıçap Inputları */
+.yaricap-aralik {
+    display: flex;
+    gap: 10px;
+}
+.yaricap-aralik input {
+    flex: 1;
+    text-align: center;
+}
+
+/* Select2 Stili */
+.select2-container--classic .select2-selection--single {
+    height: 38px !important;
+    padding: 5px 0 0 10px;
+    background-color: #333 !important;
+    border: 1px solid #ccc !important;
+    color: #eee !important;
+    border-radius: 4px !important;
+}
+
+.select2-container--classic .select2-selection--single .select2-selection__rendered {
+    color: #eee !important;
+    line-height: 25px;
+}
+.select2-container--classic .select2-selection--single .select2-selection__arrow b {
+    border-color: #eee transparent transparent transparent !important;
+}
+
+
+/* --- Tablo Alanı (Alt Bölüm) --- */
+.tablo-alani {
+    /* Flex kaldırıldığı için bu özellik artık ana düzeni etkilemez, bırakılabilir */
+    width: 100%;
+}
+
+.tablo-alani h2 {
+    color: #f7931e;
+}
+
+.tablo-alani p {
+    font-size: 1.0em;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.tablo-cerceve {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+}
+
+/* Tablo Stili */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: transparent;
+    border-radius: 8px;
+    overflow: hidden; 
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Detay Butonu */
+.detay-button {
+    background-color: #f7931e;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+.detay-button:hover {
+    background-color: #e68310;
+}
+
+/* Yükleniyor Mesajı */
+#yukleniyor-mesaji {
+    color: #00bcd4;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    padding: 30px;
+    margin: 20px auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+}
+
+/* --- YENİ: SEÇİM KUTULARI STİLİ (CHECKBOX) --- */
+/* Başlık seçim kutusu (Tümünü Seç) ve satır seçim kutuları */
+#tumunu-sec-kutusu,
+.gezegen-secim-kutusu {
+    /* Genel boyut ve hizalama */
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    cursor: pointer;
+    
+    /* Koyu temaya uygun hale getirme */
+    appearance: none; /* Varsayılan görünümü kaldır */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid #00bcd4; /* Mavi-turkuaz kenarlık */
+    border-radius: 4px;
+    background-color: #333; /* Koyu iç dolgu */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+#tumunu-sec-kutusu:checked,
+.gezegen-secim-kutusu:checked {
+    background-color: #00bcd4; /* İşaretlendiğinde içi mavi olsun */
+    border-color: #00bcd4; 
+    position: relative;
+}
+
+/* İşaretleme simgesi (Checkmark) ekleme */
+#tumunu-sec-kutusu:checked::after,
+.gezegen-secim-kutusu:checked::after {
+    content: '\2713'; /* Unicode checkmark */
+    font-size: 14px;
+    color: #121212; /* Koyu renkli tik */
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    font-weight: bold;
+}
+/* Tablodaki seçim kutusu hücrelerini küçültme */
+th:first-child, td:first-child {
+    width: 1%; /* Sadece kutuya yetecek kadar alan */
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/* --- SEÇİM KUTULARI STİLİ SONU --- */
+
+/* --- SAYFALAMA KONTROLLERİ STİLİ --- */
+#sayfalama-kontrolleri {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#sayfalama-kontrolleri button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#sayfalama-kontrolleri button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+#sayfalama-kontrolleri button:disabled {
+    background-color: #4a4a4a;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+#sayfa-bilgisi {
+    font-weight: 600;
+    padding: 0 15px;
+    font-size: 1.1em;
+}
+/* --- SAYFALAMA KONTROLLERİ STİLİ SONU --- */
+
+
+/* --- Modal (Açılır Kutu) Stili --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.85);
+    padding-top: 20px; /* Modalın ekranın en üstüne yakın açılmasını sağlar */
+}
+
+.modal-icerik {
+    background-color: #222;
+    margin: 2% auto; /* Yüzde 2 üst boşlukla ekranın daha yukarısında kalır */
+    padding: 30px;
+    border: 1px solid #555;
+    
+    /* GÜNCELLEME: Modalın genişliğini artırıyoruz */
+    width: 95%; /* Genişlik ekranın %95'i */
+    max-width: 1000px; /* Maksimum 1000px genişlik */
+    
+    /* GÜNCELLEME: Modalın yüksekliğini artırıyoruz */
+    max-height: 95vh; /* Ekran yüksekliğinin %95'i */
+    overflow-y: auto; /* İçerik taşarsa dikey kaydırma çubuğu ekler */
+    
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    position: relative;
+    color: #e0e0e0;
+}
+
+.modal-icerik h2 {
+    color: #00bcd4;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+.modal-icerik h3 {
+    color: #00bcd4;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+
+.kapat-butonu {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.kapat-butonu:hover,
+.kapat-butonu:focus {
+    color: white;
+    text-decoration: none;
+}
+
+.modal-detay-listesi {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-detay-listesi li {
+    padding: 8px 0;
+    border-bottom: 1px dotted #444;
+}
+
+.modal-detay-listesi strong {
+    display: inline-block;
+    width: 200px; 
+    color: #00bcd4;
+    font-weight: 500;
+}
+
+#modal-gorsel-alani {
+    text-align: center;
+    margin-bottom: 20px;
+    /* Gömülü alanın altındaki detay listesi ile ayrım için boşluk */
+}
+#modal-gorsel-alani img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* ÖNEMLİ GÜNCELLEME: iframe/Video Gömme Alanı için - iframe-container'ı kullanıyoruz */
+/* iframe-container'ı kullanarak sabit ve yüksek bir alan oluşturuyoruz */
+.iframe-container {
+    /* Modalın içindeki alanı yatayda tamamen kaplar */
+    width: 100%;
+    /* GÜNCELLEME: Yüksekliği sabit bir piksel değeri yaparak görselin alanını büyütüyoruz */
+    height: 600px; /* Bu değeri 500px, 600px veya 700px olarak deneyerek Görsel 2'ye en yakın sonucu bulabilirsiniz. 600px ile başlıyoruz. */
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #2c3e50; /* Yüklenirken arka plan rengi */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.iframe-container iframe {
+    position: absolute; /* Kapsayıcıya göre konumlanma */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px; 
+}
+

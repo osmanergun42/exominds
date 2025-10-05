@@ -1,0 +1,820 @@
+/* css/style.css - MODERN KARANLIK TEMA */
+
+/* ==========================================================
+   1. GENEL SIFIRLAMALAR VE DEĞİŞKENLER (Güncellendi)
+   ========================================================== */
+:root {
+    /* Renk Paleti (Derin Karanlık Tema) */
+    --color-background-deep: #000000; /* Saf siyah */
+    --color-background-dark: #0A0A0A; /* Ana arka plan */
+    --color-background-mid: #141414; /* Kartlar, formlar, paneller */
+    --color-text-light: #F4F4F4; /* Başlıklar ve ana metin */
+    --color-text-muted: #A0A0A0; /* Yardımcı metin */
+    --color-border: #2A2A2A; /* Ayırıcılar ve ince kenarlıklar */
+    
+    /* Vurgu Renkleri */
+    --color-accent-blue: #007ACC; /* Temel Vurgu - Derin Mavi */
+    --color-accent-purple: #904AE2; /* İkincil Vurgu */
+    --color-cta: var(--color-accent-blue); /* Harekete Çağrı */
+
+    /* Diğer Değişkenler */
+    --shadow-depth: 0 5px 20px rgba(0, 0, 0, 0.5); /* Derin gölge */
+    --transition-speed: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Yumuşak geçiş */
+    
+    /* YENİ EKLENEN ARKA PLAN DEĞİŞKENİ */
+    --color-overlay-dark: rgba(0, 0, 0, 0.6); /* Arka plan görseli üzerine koyu katman */
+}
+
+/* Evrensel Sıfırlama */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-background-deep); /* Yedek arka plan rengi */
+    color: var(--color-text-light);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    
+    /* YENİ EKLENEN ARKA PLAN GÖRSELİ STİLLERİ (GÜNCELLENDİ) */
+    background-image: url('../images/pexels-umkreisel-app-956981.jpg'); 
+    background-size: cover; 
+    background-position: center center; 
+    background-attachment: fixed; /* Sabit arka plan efekti */
+    background-repeat: no-repeat;
+    position: relative; 
+    z-index: 1; /* İçeriğin üzerinde olduğundan emin olmak için */
+}
+
+/* Arka plan görseli üzerine koyu, yarı şeffaf katman (Okunurluğu artırır) */
+body::before {
+    content: '';
+    position: fixed; /* Sabit arka plan ile uyumlu olması için fixed kullandık */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-overlay-dark); 
+    z-index: -1; /* İçeriğin arkasında kalması için */
+}
+
+/* Linkler */
+a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: color var(--transition-speed), opacity var(--transition-speed);
+}
+
+a:hover {
+    color: var(--color-accent-blue);
+    opacity: 0.9;
+}
+
+/* Başlıklar */
+h1, h2, h3 {
+    line-height: 1.2;
+    font-weight: 700; /* Genel başlık kalınlığı */
+}
+
+h1 { font-size: 3em; }
+h2 { font-size: 2.2em; }
+h3 { font-size: 1.7em; }
+
+
+/* Genel Düzen Sınıfları */
+.container {
+    max-width: 1280px; /* Biraz daha geniş */
+    margin: 0 auto;
+    padding: 0 30px; /* Daha fazla yan boşluk */
+}
+
+.section-padding {
+    padding: 100px 0; /* Daha belirgin bölüm boşluğu */
+}
+
+.section-title {
+    font-size: 3em; /* Daha büyük */
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 70px;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.bg-darker {
+    background-color: var(--color-background-mid);
+}
+
+/* ==========================================================
+   2. HEADER & NAVİGASYON STİLLERİ (Güncellendi)
+   ========================================================== */
+#main-header {
+    background-color: rgba(0, 0, 0, 0.95); /* Hafif şeffaf derin siyah */
+    backdrop-filter: blur(8px); /* Modern bulanıklık efekti */
+    padding: 15px 0;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-depth);
+}
+
+#main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo a {
+    font-size: 2em; /* Daha büyük logo */
+    font-weight: 600;
+    color: var(--color-accent-blue);
+    letter-spacing: -1px;
+}
+
+#main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+#main-nav li {
+    margin-left: 35px;
+}
+
+#main-nav a {
+    font-weight: 600;
+    padding: 8px 0;
+    position: relative;
+    font-size: 1.05em;
+    color: var(--color-text-muted); /* Pasif linkler daha sönük */
+}
+
+#main-nav a:hover {
+    color: var(--color-text-light);
+}
+
+#main-nav a.active,
+#main-nav a:hover::after {
+    color: var(--color-accent-blue);
+}
+
+#main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0px; /* Alt çizgi pozisyonu */
+    left: 0;
+    width: 100%;
+    height: 3px; /* Daha kalın çizgi */
+    background-color: var(--color-accent-blue);
+    transform: scaleX(0);
+    transition: transform var(--transition-speed);
+    border-radius: 2px;
+}
+
+#main-nav a.active::after {
+    transform: scaleX(1);
+    background-color: var(--color-accent-purple); /* Aktif çizgi farklı renk */
+}
+#main-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/* ==========================================================
+   3. HERO SECTION STİLLERİ (Güncellendi)
+   ========================================================== */
+#hero-section {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background: transparent; 
+    padding: 150px 0;
+}
+
+.hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 5em; 
+    font-weight: 900;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(0, 122, 204, 0.4);
+    letter-spacing: -2px;
+}
+
+.hero-subtitle {
+    font-size: 1.5em;
+    font-weight: 300;
+    color: var(--color-text-muted);
+    margin-bottom: 50px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 18px 45px;
+    background-color: var(--color-cta);
+    color: var(--color-background-deep);
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all var(--transition-speed);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(0, 122, 204, 0.4);
+}
+
+.cta-button:hover {
+    background-color: var(--color-accent-purple);
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 40px rgba(144, 74, 226, 0.6);
+}
+
+/* ==========================================================
+   4. EYES ON EXOPLANETS KARTI STİLLERİ (IFRAME BÜYÜTÜLDÜ)
+   ========================================================== */
+#eyes-on-section {
+    padding: 80px 0;
+    text-align: center;
+    background-color: transparent; 
+}
+
+.eyes-card {
+    max-width: 1400px; 
+    margin: 0 auto;
+    padding: 30px; 
+    background: rgba(20, 20, 20, 0.9); 
+    border: 1px solid var(--color-accent-blue);
+    border-radius: 20px;
+    box-shadow: var(--shadow-depth);
+    transition: transform var(--transition-speed), border-color var(--transition-speed);
+}
+
+.eyes-card:hover {
+    transform: none; 
+    border-color: var(--color-accent-blue);
+}
+
+.eyes-title {
+    font-size: 2.5em;
+    color: var(--color-accent-purple);
+    margin-bottom: 5px; 
+    font-weight: 900;
+}
+
+.eyes-subtitle {
+    font-size: 1.2em;
+    max-width: 900px;
+    margin: 0 auto 35px auto; 
+    color: var(--color-text-muted);
+}
+
+/* IFRAME'i çevreleyen konteyner (RESPONSIVE ÇERÇEVE) - BÜYÜTÜLDÜ */
+.exoplanet-iframe-container {
+    position: relative;
+    height: 700px; /* MASAÜSTÜ İÇİN YÜKSEKLİK: 700 piksel */
+    padding-bottom: 0; 
+    overflow: hidden;
+    border-radius: 10px; 
+    box-shadow: 0 0 25px rgba(0, 122, 204, 0.4);
+    background-color: #000; 
+    border: 3px solid var(--color-border);
+}
+
+.exoplanet-iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Mobil cihazlar için yükseklik ayarlaması */
+@media (max-width: 992px) {
+    .exoplanet-iframe-container {
+        height: 500px; 
+    }
+}
+@media (max-width: 600px) {
+    .exoplanet-iframe-container {
+        height: 350px; 
+    }
+}
+
+/* BUTON STİLİ KORUNDU (Veri Analizi için) */
+.eyes-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--color-accent-blue);
+    color: var(--color-background-deep);
+    font-weight: 700;
+    border-radius: 50px;
+    transition: all var(--transition-speed);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1em; 
+    margin-top: 20px;
+}
+.eyes-button:hover {
+    background-color: var(--color-accent-purple);
+    transform: translateY(-5px);
+}
+
+/* ==========================================================
+   5. KEŞFET BÖLÜMÜ (DISCOVER SECTION) STİLLERİ (Geliştirildi)
+   ========================================================== */
+#discover-section {
+    padding-bottom: 100px;
+    background-color: transparent; 
+}
+
+.discover-layout {
+    display: flex;
+    gap: 40px;
+}
+
+/* FİLTRE PANELİ STİLLERİ */
+.filter-panel {
+    flex: 0 0 320px; 
+    padding: 30px;
+    background-color: rgba(20, 20, 20, 0.9); 
+    border: 1px solid var(--color-border);
+    border-radius: 15px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    height: fit-content; 
+    position: sticky; 
+    top: 100px; 
+}
+
+.filter-panel h3 {
+    font-size: 1.6em;
+    color: var(--color-accent-blue);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 10px;
+}
+
+.filter-group {
+    margin-bottom: 25px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--color-text-light);
+}
+
+.filter-panel input,
+.filter-panel select {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-background-dark);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-light);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color var(--transition-speed);
+}
+.filter-panel input:focus,
+.filter-panel select:focus {
+    border-color: var(--color-accent-purple);
+    outline: none;
+    box-shadow: 0 0 5px rgba(144, 74, 226, 0.5);
+}
+
+.range-inputs {
+    display: flex;
+    gap: 15px;
+}
+
+#apply-filters {
+    margin-top: 25px;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-accent-blue);
+    color: var(--color-background-deep);
+    font-weight: 700;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+#apply-filters:hover {
+    background-color: var(--color-accent-purple);
+    transform: translateY(-2px);
+}
+
+
+/* SONUÇ ALANI (TABLO) STİLLERİ */
+.results-area {
+    flex-grow: 1; 
+}
+
+.results-info {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--color-accent-purple);
+    font-weight: 600;
+}
+
+.results-table-container {
+    overflow-x: auto;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+}
+
+.exoplanet-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(20, 20, 20, 0.9); 
+    overflow: hidden;
+    min-width: 700px; 
+}
+
+.exoplanet-table th,
+.exoplanet-table td {
+    padding: 18px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.exoplanet-table th {
+    background-color: var(--color-background-dark);
+    color: var(--color-accent-blue);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.exoplanet-table tr:hover {
+    background-color: #202020;
+    box-shadow: inset 3px 0 0 var(--color-accent-purple);
+}
+
+.exoplanet-table td {
+    font-size: 1em;
+    color: var(--color-text-light);
+}
+
+.exoplanet-table a {
+    font-weight: 600;
+    color: var(--color-accent-blue);
+}
+
+/* Mobil için responsive ayar */
+@media (max-width: 992px) { 
+    .discover-layout {
+        flex-direction: column;
+    }
+    .filter-panel {
+        flex: auto;
+        position: static;
+        top: auto;
+        max-width: 100%;
+    }
+}
+
+/* ==========================================================
+   6. GEZEGEN KARTLARI STİLLERİ (Geliştirildi)
+   ========================================================== */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 35px;
+}
+
+.planet-card {
+    background-color: rgba(20, 20, 20, 0.9); 
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed);
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.planet-card:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 30px rgba(0, 122, 204, 0.3), 0 0 0 3px var(--color-accent-blue); 
+}
+
+.planet-image-placeholder {
+    height: 220px;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.planet-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.planet-card:hover .planet-image-placeholder img {
+    transform: scale(1.05);
+}
+
+.planet-info {
+    padding: 25px;
+}
+
+.planet-info h3 {
+    font-size: 1.8em;
+    font-weight: 800;
+    color: var(--color-accent-blue);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.planet-info p {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: var(--color-text-muted);
+}
+
+/* Yaşanabilirlik Skoru Etiketi */
+.score-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 15px 0;
+    border-radius: 20px; 
+    font-size: 0.85em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.score-badge span {
+    font-size: 1.1em;
+    margin-left: 5px;
+    font-weight: 900;
+}
+
+.score-high {
+    background-color: #388E3C; 
+    color: white;
+}
+.score-medium {
+    background-color: #FBC02D; 
+    color: var(--color-background-deep);
+}
+.score-low {
+    background-color: #D32F2F; 
+    color: white;
+}
+
+.card-detail-button {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    margin-top: 20px;
+    border: 2px solid var(--color-accent-purple);
+    color: var(--color-accent-purple);
+    border-radius: 8px;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    font-weight: 600;
+}
+
+.card-detail-button:hover {
+    background-color: var(--color-accent-purple);
+    color: var(--color-background-deep);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================
+   7. MİSYON/HAKKIMIZDA BÖLÜMÜ STİLLERİ (Güncellendi)
+   ========================================================== */
+.mission-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.lead-text {
+    font-size: 1.4em; 
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: var(--color-accent-blue);
+}
+
+.mission-content p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    color: var(--color-text-muted);
+}
+
+/* İstatistik Grid Stili */
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 2px solid var(--color-border);
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+    padding: 10px;
+}
+
+.stat-item h3 {
+    font-size: 3em; 
+    font-weight: 900;
+    color: var(--color-accent-blue); 
+    margin-bottom: 5px;
+    line-height: 1;
+}
+
+.stat-item p {
+    font-size: 1em;
+    color: var(--color-accent-purple);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================
+   8. İLETİŞİM FORMU STİLLERİ (Güncellendi)
+   ========================================================== */
+.contact-form {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: rgba(20, 20, 20, 0.9); 
+    border-radius: 15px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-depth);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--color-text-light);
+    font-size: 1em;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 15px; 
+    background-color: var(--color-background-dark);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-light);
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 0 8px rgba(0, 122, 204, 0.5);
+    outline: none;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.send-button {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-accent-purple); 
+    color: var(--color-background-deep); 
+    font-weight: 700;
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1em;
+}
+
+.send-button:hover {
+    background-color: #B06BFF; 
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(144, 74, 226, 0.4);
+}
+
+.form-note {
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* ==========================================================
+   9. YÜKLEME VE HATA MESAJLARI STİLLERİ (Güncellendi)
+   ========================================================== */
+.loading-message, .error-message {
+    grid-column: 1 / -1; 
+    text-align: center;
+    padding: 60px 0;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.loading-message {
+    color: var(--color-accent-blue);
+    /* animation: pulse 1.5s infinite; */
+}
+
+.error-message {
+    color: #FF6B6B; 
+    background-color: #261A1A;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #FF6B6B;
+}
+
+/* ==========================================================
+   10. FOOTER STİLLERİ (EK BÖLÜM)
+   ========================================================== */
+#main-footer {
+    background-color: var(--color-background-deep);
+    padding: 40px 0;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+    text-align: center;
+}
+
+#main-footer .footer-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+#main-footer a {
+    color: var(--color-text-muted);
+    font-weight: 400;
+}
+
+#main-footer a:hover {
+    color: var(--color-accent-blue);
+}
+
+/* ==========================================================
+   11. EKSTRA EFEKTLER VE YARDIMCI SINIFLAR
+   ========================================================== */
+/* Metin Vurgusu */
+.text-highlight-blue {
+    color: var(--color-accent-blue);
+    font-weight: 700;
+}
+.text-highlight-purple {
+    color: var(--color-accent-purple);
+    font-weight: 700;
+}
+
+/* Görünmez Başlık (Erişilebilirlik için) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Anahtar Kareler (Örn: Yükleme için) */
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}

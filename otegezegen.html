@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezegen Türleri | ExoMinds Sınıflandırma</title>
+    
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="otegezegen.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+
+    <header id="main-header" role="banner">
+        <div class="container header-content">
+            <h1 id="logo"><a href="index.html" aria-label="ExoMinds Ana Sayfası">ExoMinds</a></h1>
+            
+            <nav id="main-nav" role="navigation" aria-label="Ana Navigasyon">
+                <ul>
+                    <li><a href="index.html#hero-section">Ana Sayfa</a></li>
+                    <li><a href="otegezegen.html" class="active" aria-current="page">Gezegen Türleri</a></li>
+                    <li><a href="index.html#discover-section">Veri Analizi</a></li>
+                    <li><a href="index.html#about-section">Misyonumuz</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle-button" aria-label="Temayı değiştir (Açık/Koyu)">
+                🌙
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        
+        <section id="type-hero" class="section-padding" aria-labelledby="type-title" style="padding-bottom: 50px;">
+            <div class="container" style="text-align: center;">
+                <h2 id="type-title" class="section-title" style="margin-bottom: 20px;">Ötegezegen Sınıflandırmaları</h2>
+                <p class="hero-subtitle" style="font-size: 1.4em; color: var(--color-accent-purple);">
+                    Keşfedilen binlerce ötegezegeni, fiziksel özelliklerine göre dört ana kategoriye ayırıyoruz.
+                </p>
+            </div>
+        </section>
+
+        <section id="type-grid-section" class="section-padding" style="padding-top: 50px;">
+            <div class="container">
+                <div id="planet-type-grid" class="type-grid">
+                    <p class="loading-message" style="grid-column: 1 / -1; text-align: center;">Kartlar yükleniyor...</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="planet-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-button" aria-label="Kapat">&times;</button>
+            <h3 id="modal-title" class="modal-title">Gezegen Tipi Başlığı</h3>
+            
+            <div id="modal-content-area" class="modal-body">
+                <p>İçerik yükleniyor...</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <footer id="main-footer" role="contentinfo">
+        <div class="container">
+            <p>&copy; 2025 ExoMinds. Gezegen Sınıflandırma Dizini.</p>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <script type="module" defer src="otegezegen.js"></script>
+</body>
+</html>

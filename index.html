@@ -9,8 +9,7 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-    
-    </head>
+</head>
 <body class="dark-mode" role="document">
 
     <header id="main-header" role="banner">
@@ -19,16 +18,15 @@
             <nav id="main-nav" role="navigation" aria-label="Ana Navigasyon">
                 <ul>
                     <li><a href="#hero-section" class="active" aria-current="page">Ana Sayfa</a></li>
-                    <li><a href="#eyes-on-section">3D Keşif</a></li> <li><a href="tablo\tablo.html">Veri Analizi</a></li> <li><a href="otegezegen.html">ÖTEGEZEGEN NEDİR?</a></li>
+                    <li><a href="#eyes-on-section">3D Keşif</a></li> 
+                    <li><a href="tablo\tablo.html">Veri Analizi</a></li> 
+                    <li><a href="otegezegen.html">ÖTEGEZEGEN NEDİR?</a></li>
                     <li><a href="#contact-section">İletişim</a></li>
                 </ul>
             </nav>
-            <button id="theme-toggle" class="theme-toggle-button" aria-label="Temayı değiştir (Açık/Koyu)">
-                🌙
-            </button>
         </div>
     </header>
-
+    
     <main id="main-content" role="main">
         
         <section id="hero-section" class="section-full-height parallax-container" aria-labelledby="hero-title">
@@ -41,8 +39,7 @@
                 <p class="hero-subtitle">
                     Firestore destekli, sürekli güncel ötegezegen veri tabanına dalın. <br> Bilimi ve keşfi bir araya getiren ExoMinds'a hoş geldiniz.
                 </p>
-                
-                </div>
+            </div>
         </section>
         
         <div class="section-divider bg-darker-top"></div>
@@ -75,14 +72,51 @@
         <div class="section-divider bg-lighter-top"></div>
 
         <section id="featured-discoveries" class="section-padding" aria-labelledby="featured-title">
-            </section>
-        </main>
+        </section>
+        
+        <div class="section-divider bg-lighter-bottom"></div>
+        
+        <section id="contact-section" class="section-padding bg-darker" aria-labelledby="contact-title">
+            <div class="container contact-content content-reveal">
+                <h2 id="contact-title" class="section-title">Bizimle İletişime Geçin</h2>
+                <p class="section-subtitle">
+                    Ötegezegenler, veri analizi veya ExoMinds hakkında herhangi bir sorunuz mu var? Ekibimiz size yardımcı olmaktan mutluluk duyar.
+                </p>
+
+                <div class="contact-cards-container">
+                    <div class="contact-card">
+                        <h3 class="contact-name">Osman Nuri Ergün</h3>
+                        <p class="contact-role">Proje Yöneticisi</p>
+                        <a href="tel:+905357284455" class="contact-phone">📞 0535 728 44 55</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3 class="contact-name">Özcan Bilgi</h3>
+                        <p class="contact-role">Veri Analisti</p>
+                        <a href="tel:+905304778040" class="contact-phone">📞 0530 477 80 40</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3 class="contact-name">Zeliha Hameş</h3>
+                        <p class="contact-role">Tasarımcı & Geliştirici</p>
+                        <a href="tel:+905308977110" class="contact-phone">📞 0530 897 71 10</a>
+                    </div>
+                </div>
+
+                <p class="contact-disclaimer">
+                    Sorularınız için doğrudan ilgili ekibimizle iletişime geçebilirsiniz.
+                </p>
+            </div>
+        </section>
+        
+        <div class="section-divider bg-lighter-top"></div>
+    </main>
 
     <footer id="main-footer" role="contentinfo">
-        </footer>
+    </footer>
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script> 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script type="module" defer src="js/main.js"></script>
 </body>
 </html>

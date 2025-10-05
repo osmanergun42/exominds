@@ -114,6 +114,7 @@ h3 { font-size: 1.7em; }
    ========================================================== */
 #main-header {
     background-color: rgba(0, 0, 0, 0.95); /* Hafif şeffaf derin siyah */
+    -webkit-backdrop-filter: blur(8px); /* Safari desteği için eklendi */
     backdrop-filter: blur(8px); /* Modern bulanıklık efekti */
     padding: 15px 0;
     border-bottom: 1px solid var(--color-border);
@@ -817,4 +818,139 @@ h3 { font-size: 1.7em; }
     0% { opacity: 0.5; }
     50% { opacity: 1; }
     100% { opacity: 0.5; }
+}
+/* ==========================================================
+   YENİ İLETİŞİM BÖLÜMÜ STİLLERİ (Parça 2'deki yerine)
+   ========================================================== */
+
+/* 5. İLETİŞİM BÖLÜMÜ STİLLERİ */
+
+.contact-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 60px; /* Üst boşluk artırıldı */
+    margin-bottom: 40px;
+    flex-wrap: wrap; 
+}
+
+.contact-card {
+    /* Temel Tasarım */
+    background: linear-gradient(145deg, var(--color-background-dark) 0%, #111111 100%); /* Hafif gradient */
+    padding: 30px;
+    border-radius: 20px; /* Daha yumuşak kenarlar */
+    text-align: center;
+    flex: 1; 
+    min-width: 250px; 
+    max-width: 350px;
+    position: relative;
+    overflow: hidden;
+
+    /* Görsel Efektler */
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Kartın Üzerine Gelme Etkileşimi */
+.contact-card:hover {
+    transform: translateY(-12px); /* Daha belirgin yükselme */
+    box-shadow: 0 20px 40px rgba(144, 74, 226, 0.4); /* Mor vurgulu derin gölge */
+    border-color: var(--color-accent-purple); /* Mor kenarlık vurgusu */
+}
+
+/* Mor Yükseliş Çizgisi (Üstteki Kayan Efekt) */
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--color-accent-purple);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-out;
+}
+.contact-card:hover::before {
+    transform: translateX(0);
+}
+
+.contact-name {
+    font-size: 1.8em;
+    font-weight: 900;
+    color: var(--color-accent-blue);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-role {
+    font-size: 1em;
+    color: var(--color-text-muted); /* Rol metni artık daha sönük */
+    margin-bottom: 25px;
+    display: block;
+    font-style: italic;
+}
+
+.contact-phone {
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--color-accent-purple); /* Telefon rengi mor */
+    padding: 10px 20px;
+    background-color: var(--color-background-deep); /* Siyah arka plan */
+    border: 1px solid var(--color-accent-purple);
+    border-radius: 50px; /* Hap şeklinde buton */
+    transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.contact-phone:hover {
+    background-color: var(--color-accent-purple);
+    color: var(--color-background-deep); /* Mor üzerine siyah yazı */
+    border-color: var(--color-accent-blue);
+}
+
+.contact-disclaimer {
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: 40px; /* Daha fazla boşluk */
+    padding-top: 15px;
+    border-top: 1px dashed var(--color-border); /* İnce kesikli çizgi */
+}
+/* ... Parça 3'teki diğer stillerden sonra, @media bloğu içine ekleyin/değiştirin ... */
+
+/* Tablet ve Küçük Masaüstü Ekranlar (992px ve altı) */
+@media (max-width: 992px) {
+    /* ... Diğer stiller ... */
+
+    /* İLETİŞİM KARTLARI */
+    .contact-cards-container {
+        gap: 25px;
+    }
+    .contact-card {
+        min-width: 300px;
+        flex: 0 0 calc(50% - 12.5px); /* İki sütunda göster */
+    }
+
+    /* ... Diğer stiller ... */
+}
+
+
+/* Mobil Telefon Ekranları (768px ve altı) */
+@media (max-width: 768px) {
+
+    /* ... Diğer stiller ... */
+
+    /* İLETİŞİM KARTLARI */
+    .contact-cards-container {
+        flex-direction: column; /* Tek sütunda göster */
+        gap: 20px;
+    }
+    .contact-card {
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    /* ... Diğer stiller ... */
 }
